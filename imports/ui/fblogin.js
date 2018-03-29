@@ -61,6 +61,14 @@ export default class Fblogin extends Component{
         })
     }
 
+   /* componentWillMount(){
+       let yo= Token.findOne({userId: this.userId});
+       console.log(yo);
+       if(yo!=undefined)
+       {
+           this.setState({arr:yo.array});
+       }
+    }*/
 
     render(){
 
