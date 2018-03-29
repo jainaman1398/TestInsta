@@ -61,17 +61,20 @@ export default class Fblogin extends Component{
         })
     }
 
-   /* componentWillMount(){
-       let yo= Token.findOne({userId: this.userId});
-       console.log(yo);
-       if(yo!=undefined)
-       {
-           this.setState({arr:yo.array});
-       }
-    }*/
+    componentDidMount(){
+        let t=Meteor.userId();
+       console.log(t);
+       Meteor.call("pages.check",t,(err,res)=>{
+           if(err)
+               throw err;
+           else
+               this.setState({arr:res.array});
+       })
+
+    }
 
     render(){
-
+        console.log("hello");
         return(
             <div>
                 <button className="btn btn-primary " onClick={this.login.bind(this)}>Login</button>
