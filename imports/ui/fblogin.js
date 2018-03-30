@@ -1,11 +1,12 @@
 import React ,{Component} from "react";
 import {Token} from "../api/store_token";
 import Table from "./Table";
+import List from "./List";
 export default class Fblogin extends Component{
     constructor(props){
           super(props);
           this.state={
-              query_string:"",arr:""
+              query_string:"",arr:"",result:""
           };
     }
 
@@ -56,8 +57,10 @@ export default class Fblogin extends Component{
         Meteor.call("tagged_search",this.state.query_string,(err,res)=>{
             if(err)
                 throw err;
-            else
+            else {
                 console.log(res);
+                this.setState({result:res});
+            }
         })
     }
 
@@ -81,6 +84,7 @@ export default class Fblogin extends Component{
                 <input value={this.state.query_string} placeholder="Page Statistics" onChange={this.aj.bind(this)}/>
                 <button className="btn btn-info" onClick={this.hi.bind(this)}>get Tagged data</button>
                 <Table data={this.state.arr}/>
+                <List data={this.state.result}/>
             </div>
         )
     }

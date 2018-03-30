@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 
-export default class Table extends Component{
+export default class List extends Component{
 
     constructor(props){
         super(props);
@@ -10,11 +10,15 @@ export default class Table extends Component{
     getdata(data){
         console.log("map",data);
         data=data||[];
+        data=data.data||[];
+        data=data.data||[];
+
         return data.map((task, key) => {
             return(
                 <tr className="alert alert-dark" key={key}>
-                    <th>{task.id}</th>
-                    <th>{task.name}</th>
+                    <th>{task.like_count}</th>
+                    <th>{task.comments_count}</th>
+                    <img src={task.media_url} alt="" border="3" height="100" width="100" />
                 </tr>
             )
         })
@@ -25,8 +29,9 @@ export default class Table extends Component{
         return(
             <table className="table table-bordered">
                 <tr className="alert alert-success">
-                    <th>id</th>
-                    <th>Name</th>
+                    <th>Like_count</th>
+                    <th>Comments_count</th>
+                    <th>Media </th>
                 </tr>
                 {this.getdata(this.props.data)}
             </table>
